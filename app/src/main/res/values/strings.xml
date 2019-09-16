@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Attendance Tracker</string>
+    <string name="userid">UserId</string>
+    <string name="pass">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="don_t_have_an_account_signup">DONT HAVE AN ACCOOUNT? SIGN UP</string>
+    <string name="student_icon">Student Icon</string>
+</resources>

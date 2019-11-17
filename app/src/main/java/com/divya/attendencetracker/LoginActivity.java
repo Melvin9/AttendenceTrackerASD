@@ -8,22 +8,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Date;
 
 public class LoginActivity extends AppCompatActivity {
     private boolean u=true,pa=true,p=true;
     ProgressDialog progressDialog;
     Button login, signup;
     EditText userid, password;
-
+    public static String date;
+    public static String ClassId;
+    public static String UserID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +49,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDialog();
+                UserID=userid.getText().toString().trim();
                 validate_login(userid.getText().toString().trim(),password.getText().toString().trim());
             }
         });
+
     }
 
     public void success() {
 
         Toast.makeText(LoginActivity.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(LoginActivity.this,MainActivity.class));
     }
     public void showDialog() {
         progressDialog = new ProgressDialog(LoginActivity.this);
@@ -92,7 +101,9 @@ public class LoginActivity extends AppCompatActivity {
                             pa = false;
                         if (Username.equals(o.getString("User_ID")) && Password.equals(o.getString("Password"))) {
                             p = false;
+                            date=o.getString("Date");
                             success();
+                            ClassId=o.getString("Class_id");
                             break;
                         } else p = true;
                     }
